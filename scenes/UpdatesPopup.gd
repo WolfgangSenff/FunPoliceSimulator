@@ -20,5 +20,4 @@ func show_updates(updates : Array) -> void:
     for update in updates:
         var label = UpdateLabelScene.instance()
         _container.add_child(label)
-        yield(label.set_update_text(update), "completed")
-        yield(get_tree().create_timer(0.5), "timeout")
+        label.set_update_text(update)

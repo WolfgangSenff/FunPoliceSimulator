@@ -82,6 +82,7 @@ tracks/2/keys = {
 }
 
 [node name="UpdatesPopup" type="Popup"]
+visible = true
 margin_right = 817.0
 margin_bottom = 458.0
 script = ExtResource( 1 )
@@ -89,9 +90,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -31.0
+margin_right = 31.0
+margin_bottom = 14.0
+text = "UPDATES!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = 20.0
 scroll_horizontal_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -99,9 +113,10 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
 margin_right = 817.0
-margin_bottom = 458.0
+margin_bottom = 438.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/separation = 10
 
 [node name="Button" type="Button" parent="."]
 anchor_left = 1.0
@@ -120,8 +135,6 @@ text = "OK"
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 1024.0
-margin_bottom = 600.0
 color = Color( 0.588235, 0.588235, 0.588235, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
