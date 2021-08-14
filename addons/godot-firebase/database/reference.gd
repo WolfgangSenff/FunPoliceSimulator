@@ -94,11 +94,11 @@ func update(path : String, data : Dictionary) -> void:
 
     if path == _separator:
         path = ""
-    
+
     var to_update = JSON.print(data)
     if _pusher.get_http_client_status() != HTTPClient.STATUS_REQUESTING:
         var resolved_path = (_get_list_url() + _db_path + "/" + path + _get_remaining_path())
-        
+
         _pusher.request(resolved_path, _headers, true, HTTPClient.METHOD_PATCH, to_update)
     else:
         _push_queue.append(data)
@@ -117,7 +117,7 @@ func push(data : Dictionary) -> void:
 func get_data() -> Dictionary:
     if _store == null:
         return { }
-    
+
     return _store.get_data()
 
 func _get_remaining_path(is_push : bool = true) -> String:
@@ -160,6 +160,6 @@ func on_push_request_complete(result : int, response_code : int, headers : PoolS
         emit_signal("push_successful")
     else:
         emit_signal("push_failed")
-    
+
     if _push_queue.size() > 0:
         push(_push_queue.pop_front())
