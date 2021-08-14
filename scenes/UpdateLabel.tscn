@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/UpdateLabel.gd" type="Script" id=1]
+[ext_resource path="res://assets/message_outline.png" type="Texture" id=2]
+
+[node name="UpdateLabel" type="NinePatchRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -836.0
+margin_bottom = -596.0
+rect_min_size = Vector2( 188, 0 )
+texture = ExtResource( 2 )
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 60.0
+custom_constants/margin_right = 2
+custom_constants/margin_top = 2
+custom_constants/margin_left = 2
+custom_constants/margin_bottom = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 186.0
+margin_bottom = 2.0
+bbcode_enabled = true
+bbcode_text = "Hello how are you doing? I don't know what's going on. mmmmmmmmmmmmmmm"
+text = "Hello how are you doing? I don't know what's going on. mmmmmmmmmmmmmmm"
+scroll_active = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer"]
+
+[node name="Tween" type="Tween" parent="MarginContainer"]
