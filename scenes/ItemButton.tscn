@@ -1,19 +1,19 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/button_item_highlight.png" type="Texture" id=1]
 [ext_resource path="res://scenes/ItemButton.gd" type="Script" id=2]
+[ext_resource path="res://assets/ChatBubble.png" type="Texture" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.0980392, 0.0980392, 0.0980392, 1 )
 
 [sub_resource type="StyleBoxEmpty" id=3]
 
-[sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 0.0980392, 0.0980392, 0.0980392, 1 )
+[sub_resource type="StyleBoxEmpty" id=4]
 
-[sub_resource type="StyleBoxEmpty" id=5]
-
-[sub_resource type="StyleBoxEmpty" id=6]
-
-[sub_resource type="Animation" id=1]
-resource_name = "Highlight"
+[sub_resource type="Animation" id=5]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Highlight:self_modulate")
@@ -28,7 +28,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=6]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Highlight:self_modulate")
@@ -43,22 +43,29 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ) ]
 }
 
-[node name="ItemButton" type="Button"]
+[node name="ItemButton" type="Button" groups=[
+"ChannelButton",
+]]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/hover = SubResource( 3 )
-custom_styles/pressed = SubResource( 4 )
-custom_styles/focus = SubResource( 5 )
-custom_styles/normal = SubResource( 6 )
+rect_min_size = Vector2( 0, 24 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+custom_constants/hseparation = 8
 toggle_mode = true
+text = "Placeholder"
+icon = ExtResource( 3 )
+align = 0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Highlight = SubResource( 1 )
-anims/RESET = SubResource( 2 )
+anims/Highlight = SubResource( 5 )
+anims/RESET = SubResource( 6 )
 
 [node name="Highlight" type="NinePatchRect" parent="."]
 self_modulate = Color( 1, 1, 1, 0 )

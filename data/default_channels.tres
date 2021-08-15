@@ -1,0 +1,64 @@
+{
+	"Welcome": [
+		"rules",
+		"faq",
+		"roles",
+		"introductions"
+	],
+	"Server": [
+		"announcements",
+		"top-posts",
+		"jam-pages",
+		"suggestions",
+		"resolved-suggestions"
+	],
+	"General": [
+		"general",
+		"spit-balling",
+		"help",
+		"general-vc"
+	],
+	"Current Jam": [
+		"theme-vote",
+		"challenge-vote",
+		"theme-challenge-talk",
+		"team-up",
+		"dev-updates",
+		"streaming",
+		"submissions",
+		"discussion",
+	],
+	"Feedback": [
+		"playtesting",
+		"personal-projects",
+		"feedback",
+		"show-off",
+		"show-off-talk",
+	],
+	"Resources": [
+		"education",
+		"education-talk",
+		"gamedev-resources",
+	],
+	"Offtopic": [
+		"offtopic",
+		"tech",
+		"art",
+		"gaming",
+		"venting",
+		"pictures",
+		"bots",
+	],
+	"Music": [
+		"music-commands",
+	],
+	"Gaming": [
+		"game-vc-text",
+	],
+	"Moderators": [
+		"mod-general",
+		"warnings",
+		"bot-secrets",
+		"message-logs"
+	],
+}

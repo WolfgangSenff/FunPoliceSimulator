@@ -10,14 +10,14 @@ onready var _needs_update_rect = $CanvasLayer/NeedsUpdateRect
 onready var _anim = $CanvasLayer/AnimationPlayer
 
 func show_updates(updates : Array) -> void:
-    popup_centered_ratio(0.75)
+	popup_centered_ratio(0.75)
 
-    for idx in _container.get_children():
-        _container.remove_child(idx)
+	for idx in _container.get_children():
+		_container.remove_child(idx)
 
-    yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
 
-    for update in updates:
-        var label = UpdateLabelScene.instance()
-        _container.add_child(label)
-        label.set_update_text(update)
+	for update in updates:
+		var label = UpdateLabelScene.instance()
+		_container.add_child(label)
+		label.set_update_text(update)
