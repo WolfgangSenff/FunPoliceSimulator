@@ -1,17 +1,21 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/button_item_highlight.png" type="Texture" id=1]
 [ext_resource path="res://scenes/ItemButton.gd" type="Script" id=2]
 [ext_resource path="res://assets/ChatBubble.png" type="Texture" id=3]
+[ext_resource path="res://assets/resources/RoomButtonGroup.tres" type="ButtonGroup" id=4]
 
 [sub_resource type="StyleBoxEmpty" id=1]
+content_margin_left = 10.0
 
 [sub_resource type="StyleBoxFlat" id=2]
+content_margin_left = 10.0
 bg_color = Color( 0.0980392, 0.0980392, 0.0980392, 1 )
 
 [sub_resource type="StyleBoxEmpty" id=3]
 
 [sub_resource type="StyleBoxEmpty" id=4]
+content_margin_left = 15.0
 
 [sub_resource type="Animation" id=5]
 length = 0.3
@@ -49,12 +53,13 @@ tracks/0/keys = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 0, 24 )
+custom_constants/hseparation = 8
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 2 )
 custom_styles/focus = SubResource( 3 )
 custom_styles/normal = SubResource( 4 )
-custom_constants/hseparation = 8
 toggle_mode = true
+group = ExtResource( 4 )
 text = "Placeholder"
 icon = ExtResource( 3 )
 align = 0

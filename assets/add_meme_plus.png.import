@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/NotDiscordChatView.png-0980fa97992cc27596bec264e9c894fc.stex"
+path="res://.import/add_meme_plus.png-126a88d7c6073ad71aaaee4d6d586a01.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/NotDiscordChatView.png"
-dest_files=[ "res://.import/NotDiscordChatView.png-0980fa97992cc27596bec264e9c894fc.stex" ]
+source_file="res://assets/add_meme_plus.png"
+dest_files=[ "res://.import/add_meme_plus.png-126a88d7c6073ad71aaaee4d6d586a01.stex" ]
 
 [params]
 
