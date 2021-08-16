@@ -4,17 +4,21 @@
 [ext_resource path="res://assets/CategoryChannelOpen.png" type="Texture" id=2]
 
 [sub_resource type="StyleBoxEmpty" id=1]
+content_margin_left = 4.0
 
 [sub_resource type="StyleBoxEmpty" id=2]
+content_margin_left = 4.0
 
 [sub_resource type="StyleBoxEmpty" id=3]
+content_margin_left = 4.0
 
 [sub_resource type="StyleBoxEmpty" id=4]
+content_margin_left = 4.0
 
 [sub_resource type="Animation" id=5]
 length = 0.3
 tracks/0/type = "value"
-tracks/0/path = NodePath("CategoryButton/Button:self_modulate")
+tracks/0/path = NodePath("./Button:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -40,11 +44,11 @@ margin_right = 120.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 0, 24 )
 size_flags_vertical = 3
+custom_constants/hseparation = 10
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 2 )
 custom_styles/focus = SubResource( 3 )
 custom_styles/normal = SubResource( 4 )
-custom_constants/hseparation = 10
 text = "Placeholder"
 icon = ExtResource( 2 )
 align = 0

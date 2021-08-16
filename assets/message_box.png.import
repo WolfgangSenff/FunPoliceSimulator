@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/NotDiscordChatView.png-0980fa97992cc27596bec264e9c894fc.stex"
+path="res://.import/message_box.png-c29b6100f8c4121869078879bea6f26f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/NotDiscordChatView.png"
-dest_files=[ "res://.import/NotDiscordChatView.png-0980fa97992cc27596bec264e9c894fc.stex" ]
+source_file="res://assets/message_box.png"
+dest_files=[ "res://.import/message_box.png-c29b6100f8c4121869078879bea6f26f.stex" ]
 
 [params]
 

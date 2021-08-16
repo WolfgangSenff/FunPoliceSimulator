@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/UpdatesPopup.gd" type="Script" id=1]
 [ext_resource path="res://assets/message_outline_filled.png" type="Texture" id=2]
+[ext_resource path="res://assets/popup_border.png" type="Texture" id=3]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -83,12 +84,28 @@ tracks/2/keys = {
 }
 
 [node name="UpdatesPopup" type="Popup"]
+visible = true
 margin_right = 817.0
 margin_bottom = 458.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Border" type="NinePatchRect" parent="."]
+anchor_left = 1.017
+anchor_top = 1.015
+anchor_right = 1.017
+anchor_bottom = 1.015
+margin_left = -772.889
+margin_top = -464.87
+margin_right = 2.11096
+margin_bottom = 0.129944
+texture = ExtResource( 3 )
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 anchor_right = 1.0
@@ -148,8 +165,6 @@ text = "OK"
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 1024.0
-margin_bottom = 600.0
 color = Color( 0.588235, 0.588235, 0.588235, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -158,3 +173,5 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
 anims/RESET = SubResource( 1 )
 anims/Show = SubResource( 2 )
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed" flags=6]
