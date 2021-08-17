@@ -68,7 +68,7 @@ func _on_channel_selected(channel) -> void:
     _current_channel_items[_selected_channel].show()
 
 func _on_auth_succeeded(auth) -> void:
-    _db_ref = Firebase.Database.get_database_reference("root/FunPo/Actions", { })
+    _db_ref = Firebase.Database.get_database_reference("root/FunPo/Actions", { FirebaseDatabaseReference.LIMIT_TO_LAST : "10" })
     _db_ref.connect("new_data_update", self, "_on_new_actions")
     _db_ref.connect("patch_data_update", self, "_on_update_actions")
 
@@ -99,3 +99,16 @@ func _on_AddMemeButton_pressed() -> void:
 func _on_EditText_gui_input(event: InputEvent) -> void:
     if event is InputEventKey and event.is_action_pressed("ui_enter"):
         _on_SubmitButton_pressed()
+
+
+func _on_AddMemePopup_file_selected(path: String) -> void:
+    var filename = path.get_file()
+    var upload_task = Firebase.Storage.ref("FunPo/upload/" + filename).put_file(path)
+    yield(upload_task, "task_finished")
+    _db_ref.push({
+        "message_text" : "New meme from " + Globals.current_user,
+        "channel" : _selected_channel,
+        "username" : Globals.current_user,
+        "is_toxic" : false,
+        "meme_link" : upload_task.data.name
+       })

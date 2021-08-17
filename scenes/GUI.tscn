@@ -168,10 +168,22 @@ size_flags_horizontal = 8
 shortcut = SubResource( 2 )
 text = "OK"
 
-[node name="AddMemePopup" type="Popup" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="AddMemePopup" type="FileDialog" parent="."]
+margin_right = 631.0
+margin_bottom = 338.0
+popup_exclusive = true
+window_title = "Open a File"
+mode = 0
+access = 2
+filters = PoolStringArray( "*.png, *.jpg" )
+show_hidden_files = true
+current_dir = "/Users/kyles/Documents/Code/Godot/FunPoliceSimulator"
+current_path = "/Users/kyles/Documents/Code/Godot/FunPoliceSimulator/"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="gui_input" from="HSplitContainer/MarginContainer/VSplitContainer/HSplitContainer/MarginContainer/MarginContainer/EditText" to="." method="_on_EditText_gui_input"]
 [connection signal="pressed" from="HSplitContainer/MarginContainer/VSplitContainer/HSplitContainer/MarginContainer/AddMemeContainer/AddMemeButton" to="." method="_on_AddMemeButton_pressed"]
 [connection signal="pressed" from="HSplitContainer/MarginContainer/VSplitContainer/HSplitContainer/MarginContainer2/SubmitButton" to="." method="_on_SubmitButton_pressed"]
+[connection signal="file_selected" from="AddMemePopup" to="." method="_on_AddMemePopup_file_selected"]

@@ -1,36 +1,35 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://scenes/TextMessageBox.gd" type="Script" id=1]
+[ext_resource path="res://assets/name_plate.png" type="Texture" id=1]
 [ext_resource path="res://scenes/ModerationControl.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/name_plate.png" type="Texture" id=3]
+[ext_resource path="res://scenes/ImageMessageBox.gd" type="Script" id=3]
 
-[node name="TextMessageBox" type="VSplitContainer"]
+[node name="ImageMessageBox" type="VSplitContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-size_flags_horizontal = 3
 size_flags_vertical = 2
 collapsed = true
 dragger_visibility = 2
-script = ExtResource( 1 )
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="NameContainer" type="MarginContainer" parent="."]
-margin_right = 91.0
-margin_bottom = 35.0
+margin_right = 136.0
+margin_bottom = 42.0
 size_flags_horizontal = 2
 custom_constants/margin_right = 8
-custom_constants/margin_top = 2
+custom_constants/margin_top = 10
 custom_constants/margin_left = 4
-custom_constants/margin_bottom = 2
+custom_constants/margin_bottom = 10
 
 [node name="NinePatchRect" type="NinePatchRect" parent="NameContainer"]
 margin_left = 4.0
-margin_top = 2.0
-margin_right = 83.0
-margin_bottom = 33.0
-texture = ExtResource( 3 )
+margin_top = 10.0
+margin_right = 128.0
+margin_bottom = 32.0
+texture = ExtResource( 1 )
 patch_margin_left = 2
 patch_margin_top = 2
 patch_margin_right = 2
@@ -38,60 +37,77 @@ patch_margin_bottom = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="NameContainer"]
 margin_left = 4.0
-margin_top = 2.0
-margin_right = 83.0
-margin_bottom = 33.0
+margin_top = 10.0
+margin_right = 128.0
+margin_bottom = 32.0
 custom_constants/margin_right = 2
 custom_constants/margin_left = 2
 
 [node name="Username" type="Label" parent="NameContainer/MarginContainer"]
 margin_left = 2.0
-margin_right = 77.0
-margin_bottom = 31.0
+margin_right = 122.0
+margin_bottom = 22.0
 rect_min_size = Vector2( 75, 22 )
 size_flags_horizontal = 3
 text = "MMMMMMMMMM"
 valign = 1
-autowrap = true
 
 [node name="HSplitContainer" type="HSplitContainer" parent="."]
-margin_top = 35.0
+margin_top = 42.0
 margin_right = 1024.0
-margin_bottom = 59.0
+margin_bottom = 79.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
 collapsed = true
 dragger_visibility = 1
 
-[node name="TextContainer" type="MarginContainer" parent="HSplitContainer"]
+[node name="VSplitContainer" type="VSplitContainer" parent="HSplitContainer"]
 margin_right = 964.0
-margin_bottom = 21.0
+margin_bottom = 37.0
 size_flags_horizontal = 3
-size_flags_vertical = 2
+size_flags_vertical = 3
+collapsed = true
+dragger_visibility = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/VSplitContainer"]
+margin_right = 964.0
+margin_bottom = 24.0
+custom_constants/margin_top = 10
+
+[node name="MessageText" type="Label" parent="HSplitContainer/VSplitContainer/MarginContainer"]
+margin_top = 10.0
+margin_right = 964.0
+margin_bottom = 24.0
+
+[node name="ImageContainer" type="MarginContainer" parent="HSplitContainer/VSplitContainer"]
+margin_top = 24.0
+margin_right = 964.0
+margin_bottom = 37.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_constants/margin_right = 4
 custom_constants/margin_top = 3
 custom_constants/margin_left = 0
-custom_constants/margin_bottom = 3
+custom_constants/margin_bottom = 10
 
-[node name="MessageText" type="RichTextLabel" parent="HSplitContainer/TextContainer"]
+[node name="ImageRect" type="TextureRect" parent="HSplitContainer/VSplitContainer/ImageContainer"]
+margin_left = 480.0
 margin_top = 3.0
-margin_right = 960.0
-margin_bottom = 18.0
-size_flags_horizontal = 3
-fit_content_height = true
-scroll_active = false
+margin_right = 480.0
+margin_bottom = 3.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+stretch_mode = 6
 
 [node name="MarginContainer" type="MarginContainer" parent="HSplitContainer"]
 margin_left = 976.0
+margin_top = 13.0
 margin_right = 1024.0
-margin_bottom = 24.0
-size_flags_vertical = 2
+margin_bottom = 37.0
+size_flags_vertical = 10
 custom_constants/margin_right = 4
 custom_constants/margin_top = 4
 custom_constants/margin_left = 4
 custom_constants/margin_bottom = 4
 
 [node name="ModerationControl" parent="HSplitContainer/MarginContainer" instance=ExtResource( 2 )]
-
-[connection signal="message_accepted" from="HSplitContainer/MarginContainer/ModerationControl" to="." method="_on_ModerationControl_message_accepted" flags=6]
-[connection signal="message_rejected" from="HSplitContainer/MarginContainer/ModerationControl" to="." method="_on_ModerationControl_message_rejected" flags=6]
