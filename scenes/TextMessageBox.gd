@@ -12,7 +12,7 @@ var _is_toxic = false setget set_is_toxic
 
 func set_username(username : String) -> void:
     _username = username
-    $NameContainer/Username.text = _username + ":"
+    $NameContainer/MarginContainer/Username.text = _username + ":"
 
 func set_text(text : String) -> void:
     _text = text
