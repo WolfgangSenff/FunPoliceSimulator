@@ -28,10 +28,12 @@ var _filter_query : Dictionary
 var _db_path : String
 var _cached_filter : String
 var _push_queue : Array = []
+var _delete_queue : Array = []
 var _can_connect_to_host : bool = false
 
 const _put_tag : String = "put"
 const _patch_tag : String = "patch"
+const _delete_tag : String = "delete"
 const _separator : String = "/"
 const _json_list_tag : String = ".json"
 const _query_tag : String = "?"
@@ -82,6 +84,8 @@ func on_new_sse_event(headers : Dictionary, event : String, data : Dictionary) -
                     emit_signal("new_data_update", FirebaseResource.new(data.path, data.data))
             elif command == _patch_tag:
                 emit_signal("patch_data_update", FirebaseResource.new(data.path, data.data))
+            elif command == _delete_tag:
+                emit_signal("delete_data_update", FirebaseResource.new(data.path, null))
     pass
 
 func set_store(store_ref : FirebaseDatabaseStore) -> void:
@@ -109,6 +113,12 @@ func push(data : Dictionary) -> void:
         _pusher.request(_get_list_url() + _db_path + _get_remaining_path(), _headers, true, HTTPClient.METHOD_POST, to_push)
     else:
         _push_queue.append(data)
+
+func delete(id : String) -> void:
+    if _pusher.get_http_client_status() == HTTPClient.STATUS_DISCONNECTED:
+        _pusher.request(_get_list_url() + _db_path + _separator + id + _get_remaining_path(), _headers, true, HTTPClient.METHOD_DELETE)
+    else:
+        _delete_queue.append(id)
 
 #
 # Returns a deep copy of the current local copy of the data stored at this reference in the Firebase
@@ -163,3 +173,7 @@ func on_push_request_complete(result : int, response_code : int, headers : PoolS
 
     if _push_queue.size() > 0:
         push(_push_queue.pop_front())
+
+    # Deletion plays second fiddle to pushing, in case the deletion is intended to delete something that was pushed first but hasn't completed yet. Still not perfect, but it's probably okay, as it's doubtful people will be deleting stuff rapidly compared to pushing.
+    if _delete_queue.size() > 0:
+        delete(_delete_queue.pop_front())

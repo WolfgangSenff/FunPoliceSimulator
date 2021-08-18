@@ -67,10 +67,28 @@ func _on_channel_selected(channel) -> void:
     _selected_channel = channel
     _current_channel_items[_selected_channel].show()
 
+var temp_ref
+
 func _on_auth_succeeded(auth) -> void:
-    _db_ref = Firebase.Database.get_database_reference("root/FunPo/Actions", { FirebaseDatabaseReference.LIMIT_TO_LAST : "10" })
+    temp_ref = Firebase.Database.get_database_reference("FunPo/new_sessions", { })
+    temp_ref.connect("new_data_update", self, "_on_new_session", [], CONNECT_ONESHOT)
+    temp_ref.push({"tag":"new_session"})
+
+func _on_new_session(data):
+    Globals.current_session = data.key
+    _db_ref = Firebase.Database.get_database_reference("FunPo/sessions/" + Globals.current_session, { })
+    _db_ref.connect("push_failed", self, "_on_bad_push")
     _db_ref.connect("new_data_update", self, "_on_new_actions")
     _db_ref.connect("patch_data_update", self, "_on_update_actions")
+    temp_ref.delete(Globals.current_session)
+
+func _on_bad_push() -> void:
+    print("Bad push!")
+
+func delete_session() -> void:
+    var ref = Firebase.Database.get_database_reference("FunPo/sessions")
+    if Globals.current_session:
+        ref.delete(Globals.current_session)
 
 func _on_new_actions(data) -> void:
     if data.data.has("channel"):
@@ -81,7 +99,7 @@ func _on_update_actions(data) -> void:
     pass
 
 func _on_SubmitButton_pressed() -> void:
-    if _message_edit_text.text and _message_edit_text.text != "":
+    if _message_edit_text.text and _message_edit_text.text != "" and _db_ref:
         if _message_edit_text.text.ends_with("\n"):
             _message_edit_text.text = _message_edit_text.text.rstrip("\n")
         _db_ref.push({
