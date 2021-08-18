@@ -11,6 +11,7 @@ const CHANNEL_BUTTON = preload("res://scenes/ItemButton.tscn")
 const CATEGORY_BUTTON = preload("res://scenes/CategoryButton.tscn")
 const MessageContainerScene = preload("res://scenes/MessageContainer.tscn")
 const DefaultChannel = "general"
+const DbPath = "FunPo/sessions"
 
 var _db_ref
 
@@ -70,25 +71,20 @@ func _on_channel_selected(channel) -> void:
 var temp_ref
 
 func _on_auth_succeeded(auth) -> void:
-    temp_ref = Firebase.Database.get_database_reference("FunPo/new_sessions", { })
-    temp_ref.connect("new_data_update", self, "_on_new_session", [], CONNECT_ONESHOT)
-    temp_ref.push({"tag":"new_session"})
-
-func _on_new_session(data):
-    Globals.current_session = data.key
-    _db_ref = Firebase.Database.get_database_reference("FunPo/sessions/" + Globals.current_session, { })
+    _db_ref = Firebase.Database.get_database_reference(DbPath, { })
     _db_ref.connect("push_failed", self, "_on_bad_push")
     _db_ref.connect("new_data_update", self, "_on_new_actions")
     _db_ref.connect("patch_data_update", self, "_on_update_actions")
-    temp_ref.delete(Globals.current_session)
 
 func _on_bad_push() -> void:
     print("Bad push!")
-
-func delete_session() -> void:
-    var ref = Firebase.Database.get_database_reference("FunPo/sessions")
-    if Globals.current_session:
-        ref.delete(Globals.current_session)
+    var data = {"data":{
+        "channel": _selected_channel,
+        "username": Globals.current_user,
+        "is_toxic": false,
+        "message_text": "There was an error sending your last message."
+       }}
+    _on_new_actions(data)
 
 func _on_new_actions(data) -> void:
     if data.data.has("channel"):
