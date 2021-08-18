@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/name_plate.png" type="Texture" id=1]
 [ext_resource path="res://scenes/ModerationControl.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/ImageMessageBox.gd" type="Script" id=3]
+[ext_resource path="res://assets/rejected_meme.png" type="Texture" id=4]
 
 [node name="ImageMessageBox" type="VSplitContainer"]
 anchor_right = 1.0
@@ -99,6 +100,14 @@ size_flags_horizontal = 6
 size_flags_vertical = 6
 stretch_mode = 6
 
+[node name="RejectedPlaceholder" type="TextureRect" parent="HSplitContainer/VSplitContainer/ImageContainer"]
+visible = false
+margin_top = 3.0
+margin_right = 960.0
+margin_bottom = 67.0
+texture = ExtResource( 4 )
+stretch_mode = 6
+
 [node name="MarginContainer" type="MarginContainer" parent="HSplitContainer"]
 margin_left = 976.0
 margin_top = 13.0
@@ -111,3 +120,5 @@ custom_constants/margin_left = 4
 custom_constants/margin_bottom = 4
 
 [node name="ModerationControl" parent="HSplitContainer/MarginContainer" instance=ExtResource( 2 )]
+
+[connection signal="message_rejected" from="HSplitContainer/MarginContainer/ModerationControl" to="." method="_on_ModerationControl_message_rejected"]
