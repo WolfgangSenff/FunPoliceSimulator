@@ -1,5 +1,4 @@
 extends SplitContainer
-class_name MessageCont, "res://icon.png"
 
 var _username := ""
 var _text := ""
@@ -56,3 +55,8 @@ func array2image(array) -> ImageTexture:
     var new_texture := ImageTexture.new()
     new_texture.create_from_image(new_image)
     return new_texture
+
+
+func _on_ModerationControl_message_rejected() -> void:
+    $HSplitContainer/VSplitContainer/ImageContainer/ImageRect.hide()
+    $HSplitContainer/VSplitContainer/ImageContainer/RejectedPlaceholder.show()

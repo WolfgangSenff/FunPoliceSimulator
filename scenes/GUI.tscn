@@ -17,7 +17,9 @@ scancode = 16777221
 [sub_resource type="ShortCut" id=2]
 shortcut = SubResource( 1 )
 
-[node name="GUI" type="Control"]
+[node name="GUI" type="Control" groups=[
+"GUI",
+]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )

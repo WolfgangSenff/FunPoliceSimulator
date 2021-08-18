@@ -104,11 +104,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/RoomScrollContainer.gd"
 }, {
-"base": "SplitContainer",
-"class": "MessageCont",
-"language": "GDScript",
-"path": "res://scenes/ImageMessageBox.gd"
-}, {
 "base": "Reference",
 "class": "StorageReference",
 "language": "GDScript",
@@ -139,7 +134,6 @@ _global_script_class_icons={
 "FirestoreTask": "",
 "FirestoreTileMap": "",
 "ItemsContainer": "",
-"MessageCont": "res://icon.png",
 "StorageReference": "",
 "StorageTask": ""
 }
