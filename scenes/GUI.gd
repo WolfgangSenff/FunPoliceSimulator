@@ -4,7 +4,7 @@ onready var _updates_popup = $UpdatesPopup
 
 onready var channel_list = $HSplitContainer/RoomScrollContainer/VBoxContainer
 onready var _message_edit_text = $HSplitContainer/MarginContainer/VSplitContainer/HSplitContainer/MarginContainer/MarginContainer/EditText
-onready var _message_container_box = $HSplitContainer/MarginContainer/VSplitContainer/MessageScrollContainer
+onready var _message_container_box = $HSplitContainer/MarginContainer/VSplitContainer/MessagePlayerContainer/MessageScrollContainer
 onready var _add_meme_popup = $AddMemePopup
 
 const CHANNEL_BUTTON = preload("res://scenes/ItemButton.tscn")
@@ -126,3 +126,7 @@ func _on_AddMemePopup_file_selected(path: String) -> void:
         "is_toxic" : false,
         "meme_link" : upload_task.data.name
        })
+
+
+func _on_CheckButton_toggled(button_pressed: bool) -> void:
+    Globals.is_accessible = button_pressed

@@ -5,7 +5,7 @@
 [ext_resource path="res://scenes/RoomScrollContainer.gd" type="Script" id=3]
 [ext_resource path="res://assets/NotDiscordChatView.png" type="Texture" id=4]
 [ext_resource path="res://assets/message_box.png" type="Texture" id=5]
-[ext_resource path="res://scenes/MessageContainer.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/message_outline_filled.png" type="Texture" id=6]
 [ext_resource path="res://assets/add_meme_plus.png" type="Texture" id=7]
 
 [sub_resource type="InputEventKey" id=1]
@@ -79,9 +79,17 @@ margin_top = 10.0
 margin_right = 984.0
 margin_bottom = 590.0
 
-[node name="MessageScrollContainer" type="ScrollContainer" parent="HSplitContainer/MarginContainer/VSplitContainer"]
+[node name="MessagePlayerContainer" type="HSplitContainer" parent="HSplitContainer/MarginContainer/VSplitContainer"]
 margin_right = 974.0
 margin_bottom = 538.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+split_offset = 914
+
+[node name="MessageScrollContainer" type="ScrollContainer" parent="HSplitContainer/MarginContainer/VSplitContainer/MessagePlayerContainer"]
+margin_right = 781.0
+margin_bottom = 538.0
+size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
 scroll_horizontal_enabled = false
@@ -89,10 +97,67 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MessageContainer" parent="HSplitContainer/MarginContainer/VSplitContainer/MessageScrollContainer" instance=ExtResource( 6 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="VSplitContainer" type="VSplitContainer" parent="HSplitContainer/MarginContainer/VSplitContainer/MessagePlayerContainer"]
+margin_left = 793.0
 margin_right = 974.0
+margin_bottom = 538.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+collapsed = true
+dragger_visibility = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/MarginContainer/VSplitContainer/MessagePlayerContainer/VSplitContainer"]
+margin_right = 181.0
+margin_bottom = 60.0
+size_flags_horizontal = 3
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckButton" type="CheckButton" parent="HSplitContainer/MarginContainer/VSplitContainer/MessagePlayerContainer/VSplitContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 171.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+text = "Accessibility"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerMarginContainer" type="MarginContainer" parent="HSplitContainer/MarginContainer/VSplitContainer/MessagePlayerContainer/VSplitContainer"]
+margin_top = 60.0
+margin_right = 181.0
+margin_bottom = 538.0
+size_flags_horizontal = 3
+custom_constants/margin_right = 4
+custom_constants/margin_top = 4
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="HSplitContainer/MarginContainer/VSplitContainer/MessagePlayerContainer/VSplitContainer/PlayerMarginContainer"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 177.0
+margin_bottom = 474.0
+texture = ExtResource( 6 )
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer/MarginContainer/VSplitContainer/MessagePlayerContainer/VSplitContainer/PlayerMarginContainer"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 177.0
+margin_bottom = 474.0
+
+[node name="PlayerContainer" type="VBoxContainer" parent="HSplitContainer/MarginContainer/VSplitContainer/MessagePlayerContainer/VSplitContainer/PlayerMarginContainer/ScrollContainer"]
 
 [node name="HSplitContainer" type="HSplitContainer" parent="HSplitContainer/MarginContainer/VSplitContainer"]
 margin_top = 550.0
@@ -185,6 +250,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="toggled" from="HSplitContainer/MarginContainer/VSplitContainer/MessagePlayerContainer/VSplitContainer/MarginContainer/CheckButton" to="." method="_on_CheckButton_toggled"]
 [connection signal="gui_input" from="HSplitContainer/MarginContainer/VSplitContainer/HSplitContainer/MarginContainer/MarginContainer/EditText" to="." method="_on_EditText_gui_input"]
 [connection signal="pressed" from="HSplitContainer/MarginContainer/VSplitContainer/HSplitContainer/MarginContainer/AddMemeContainer/AddMemeButton" to="." method="_on_AddMemeButton_pressed"]
 [connection signal="pressed" from="HSplitContainer/MarginContainer/VSplitContainer/HSplitContainer/MarginContainer2/SubmitButton" to="." method="_on_SubmitButton_pressed"]
